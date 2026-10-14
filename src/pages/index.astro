@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Little Question for You 💌</title>
+    <meta name="description" content="Someone has a little question for you." />
+  </head>
+  <body>
+    <main class="invitation">
+    <div class="sparkle">✦</div>
+    <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+
+    <div class="character" id="character" aria-label="A little character">
+      <div class="heart">♥️</div>
+      <div class="head">
+        <div class="hair"></div>
+        <div class="eyes"><span></span><span></span></div>
+        <div class="smile"></div>
+      </div>
+      <div class="body-character"></div>
+      <div class="arm arm-left"></div>
+      <div class="arm arm-right"></div>
+      <div class="leg leg-left"></div>
+      <div class="leg leg-right"></div>
+      <div class="bouquet" id="bouquet" aria-label="A bouquet of roses">
+        <span class="rose r1">🌹</span>
+        <span class="rose r2">🌹</span>
+        <span class="rose r3">🌹</span>
+        <div class="wrap"></div>
+        <div class="ribbon"></div>
+      </div>
+    </div>
+
+    <section class="message">
+      <p class="tiny-label">MESSAGE #001</p>
+      <h1 id="question">Hey you 👀</h1>
+      <p id="description">
+        I've been meaning to ask you something. Care to help me out?
+      </p>
+      <div class="answers" id="answers">
+        <button id="start" class="primary">Let's hear it 💌</button>
+      </div>
+      <p class="progress" id="progress">A tiny adventure awaits</p>
+    </section>
+  </main>
+  </body>
+</html>
+
+
+<style is:global>
+    :root {
+      --bg: #eaf3ff;
+      --card: #ffffff;
+      --text: #1f2a44;
+      --muted: #6b82a8;
+      --accent: #3b82f6;
+      --accent-soft: #dbeafe;
+      --skin: #ffd9b8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1626;
+        --card: #172338;
+        --text: #e6f0ff;
+        --muted: #8fb0d6;
+        --accent-soft: #1f3556;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+    .invitation {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border-radius: 28px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(59, 130, 246, 0.22);
+    }
+    .sparkle { color: var(--accent); font-size: 22px; }
+    .eyebrow, .tiny-label, .progress {
+      letter-spacing: 0.15em;
+      font-size: 11px;
+      color: var(--muted);
+      margin: 6px 0;
+    }
+
+   
+    .character {
+      position: relative;
+      width: 100px;
+      height: 150px;
+      margin: 24px auto 20px;
+    }
+    .heart { position: absolute; top: -22px; right: -14px; font-size: 22px; }
+    .head {
+      position: absolute; top: 0; left: 20px;
+      width: 60px; height: 60px;
+      background: var(--skin);
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .hair {
+      position: absolute; top: -4px; left: -2px;
+      width: 64px; height: 24px;
+      background: #2b1d14;
+      border-radius: 32px 32px 6px 6px;
+    }
+    .hair::before {
+      content: "";
+      position: absolute; top: -7px; left: 14px;
+      width: 30px; height: 14px;
+      background: #2b1d14;
+      border-radius: 50% 50% 0 0;
+    }
+    .eyes {
+      position: absolute; top: 28px; left: 0; width: 100%;
+      display: flex; justify-content: center; gap: 16px;
+    }
+    .eyes span { width: 7px; height: 7px; background: #1f2a44; border-radius: 50%; }
+    .smile {
+      position: absolute; bottom: 10px; left: 21px;
+      width: 18px; height: 9px;
+      border-bottom: 3px solid #1f2a44;
+      border-radius: 0 0 18px 18px;
+    }
+    .body-character {
+      position: absolute; top: 58px; left: 25px;
+      width: 50px; height: 56px;
+      background: var(--accent);
+      border-radius: 18px 18px 8px 8px;
+    }
+    .arm {
+      position: absolute; top: 64px;
+      width: 12px; height: 42px;
+      background: var(--accent);
+      border-radius: 8px;
+    }
+    .arm-left { left: 10px; }
+    .arm-right { right: 10px; }
+    .leg {
+      position: absolute; top: 108px;
+      width: 14px; height: 38px;
+      background: #2b3a67;
+      border-radius: 6px;
+    }
+    .leg-left { left: 30px; }
+    .leg-right { right: 30px; }
+
+   
+    .bouquet {
+      position: absolute; left: 96px; top: 34px;
+      width: 56px; height: 68px;
+      opacity: 0; z-index: 3;
+      pointer-events: none;
+    }
+    .rose { position: absolute; font-size: 20px; line-height: 1; }
+    .r1 { left: 2px; top: 10px; }
+    .r2 { left: 18px; top: 0; }
+    .r3 { left: 34px; top: 10px; }
+    .wrap {
+      position: absolute; left: 8px; top: 26px;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 40px solid #93c5fd;
+    }
+    .ribbon {
+      position: absolute; left: 18px; top: 40px;
+      width: 20px; height: 6px;
+      background: #fff; border-radius: 3px;
+    }
+
+   
+    h1 { font-size: 26px; margin: 8px 0; }
+    #description { color: var(--muted); line-height: 1.5; margin: 0 0 20px; }
+    .answers { display: grid; gap: 10px; }
+    button {
+      font: inherit;
+      font-weight: 600;
+      padding: 14px 18px;
+      border: 2px solid transparent;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    button:hover { transform: translateY(-2px); }
+    button:disabled { cursor: default; opacity: 0.7; transform: none; }
+    .primary { background: var(--accent); color: #fff; }
+    .answer {
+      background: var(--accent-soft);
+      color: var(--text);
+      border-color: var(--accent-soft);
+    }
+    .answer:hover { border-color: var(--accent); }
+    .final-note { color: var(--muted); margin: 0; line-height: 1.5; }
+</style>
+
+<script>
+import { gsap } from "gsap";
+
+type Scene = {
+  question: string;
+  description: string;
+  options: string[];
+};
+
+type Answer = {
+  question: string;
+  answer: string;
+};
+
+
+function $<T extends HTMLElement>(selector: string): T {
+  const el = document.querySelector<T>(selector);
+  if (!el) throw new Error(`Missing element: ${selector}`);
+  return el;
+}
+
+const character = $<HTMLDivElement>("#character");
+const question = $<HTMLHeadingElement>("#question");
+const description = $<HTMLParagraphElement>("#description");
+const answers = $<HTMLDivElement>("#answers");
+const progress = $<HTMLParagraphElement>("#progress");
+const startButton = $<HTMLButtonElement>("#start");
+
+const scenes: Scene[] = [
+  {
+    question: "First things first... 👀",
+    description: "Would you be interested in going on a date with me?",
+    options: ["Yes, I'd love to 💗", "Tell me more 👀", "I'd rather not 💛"],
+  },
+  {
+    question: "Okay, let's plan it!",
+    description: "What sounds like your kind of date?",
+    options: ["Dinner 🍝", "Coffee & a walk ☕", "Something fun 🎳"],
+  },
+  {
+    question: "One last thing...",
+    description: "Which day would work best for you?",
+    options: ["Friday", "Saturday", "Sunday", "Let's decide together"],
+  },
+];
+
+const responses: Answer[] = [];
+
+// Paste your Web3Forms access key between the quotes
+const ACCESS_KEY = "cb969c62-fc5b-423c-aed0-fdc1e73352e5";
+
+async function sendResponses(): Promise<boolean> {
+  const payload: Record<string, string> = {
+    access_key: ACCESS_KEY,
+    subject: "💌 New invitation response",
+    from_name: "Invitation page",
+  };
+  responses.forEach((r, i) => {
+    payload[`Q${i + 1}: ${r.question}`] = r.answer;
+  });
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    return res.ok && data.success === true;
+  } catch {
+    return false;
+  }
+}
+
+
+gsap.set(".arm-left", { rotation: 15, transformOrigin: "50% 0%" });
+gsap.set(".arm-right", { rotation: -15, transformOrigin: "50% 0%" });
+
+
+gsap.to(character, {
+  y: -8,
+  duration: 1.2,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut",
+});
+
+function showScene(index: number): void {
+  const scene = scenes[index];
+  if (!scene) return;
+
+  gsap.to(".message", {
+    opacity: 0,
+    y: 10,
+    duration: 0.2,
+    onComplete: () => {
+      question.textContent = scene.question;
+      description.textContent = scene.description;
+      progress.textContent = `QUESTION ${index + 1} OF ${scenes.length}`;
+      answers.replaceChildren();
+
+      scene.options.forEach((option) => {
+        const button = document.createElement("button");
+        button.className = "answer";
+        button.textContent = option;
+        button.addEventListener("click", () => {
+          
+          answers
+            .querySelectorAll<HTMLButtonElement>("button")
+            .forEach((b) => (b.disabled = true));
+
+          responses[index] = { question: scene.question, answer: option };
+
+          if (index === 0 && option === "I'd rather not 💛") {
+            void sendResponses();
+            showEnding(
+              "Thank you for being honest 💛",
+              "No pressure at all. Thanks for taking a moment to answer."
+            );
+            return;
+          }
+
+          if (index < scenes.length - 1) {
+            showScene(index + 1);
+          } else {
+            showFinal();
+          }
+        });
+        answers.append(button);
+      });
+
+      gsap.fromTo(".message", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35 });
+      gsap.fromTo(
+        "#character",
+        { rotation: -5 },
+        { rotation: 0, duration: 0.4, ease: "back.out(2)" }
+      );
+    },
+  });
+}
+
+function showEnding(title: string, text: string): void {
+  question.textContent = title;
+  description.textContent = text;
+  progress.textContent = "THANK YOU FOR YOUR TIME";
+  answers.replaceChildren();
+  gsap.to(character, { rotation: 0, scale: 1, duration: 0.3 });
+}
+
+function showFinal(): void {
+  question.textContent = "It's a date! 🌹";
+  description.textContent =
+    "These are for you. We can figure out the details together.";
+  progress.textContent = "INVITATION COMPLETE";
+  answers.replaceChildren();
+
+  const note = document.createElement("p");
+  note.textContent = "Sending your answers...";
+  note.className = "final-note";
+  answers.append(note);
+
+  void sendResponses().then((ok) => {
+    note.textContent = ok
+      ? "Your answers have been sent 💌"
+      : "Couldn't send your answers. Please try again later.";
+  });
+
+  
+  gsap.to(".arm-right", { rotation: -75, duration: 0.5, ease: "power2.out" });
+  gsap.fromTo(
+    "#bouquet",
+    { opacity: 0, scale: 0, transformOrigin: "50% 100%" },
+    { opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: "back.out(2)" }
+  );
+
+  gsap.to(character, {
+    rotation: 8,
+    scale: 1.08,
+    duration: 0.3,
+    yoyo: true,
+    repeat: 3,
+  });
+
+}
+
+startButton.addEventListener("click", () => {
+  showScene(0);
+});
+</script>
